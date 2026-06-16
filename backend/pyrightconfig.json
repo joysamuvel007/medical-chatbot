@@ -1,0 +1,16 @@
+{
+    "include": [
+        "."
+    ],
+    "pythonVersion": "3.11",
+    "venvPath": "C:\\Users\\joysa\\anaconda3\\envs",
+    "venv": "codex",
+    "executionEnvironments": [
+        {
+            "root": ".",
+            "extraPaths": [
+                "."
+            ]
+        }
+    ]
+}

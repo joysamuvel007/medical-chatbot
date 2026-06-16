@@ -1,0 +1,18 @@
+{
+  "session_id": "1d05fbe1",
+  "created_at": "2026-06-12T09:04:05.096800",
+  "last_active": "2026-06-12T09:05:57.397457",
+  "messages": [
+    {
+      "role": "user",
+      "content": "i have cough,fever,headache what to do",
+      "timestamp": "2026-06-12T09:04:05.117889"
+    },
+    {
+      "role": "assistant",
+      "content": "I'm so sorry to hear you're not feeling well. It sounds like you're experiencing some uncomfortable symptoms!\n\nFirstly, please know that it's always best to consult with a healthcare professional for personalized advice. That being said, I can offer some general information and suggestions.\n\nA cough, fever, and headache can be caused by various factors, including viral infections (like the common cold or flu), allergies, or even sinusitis. It's essential to stay hydrated by drinking plenty of fluids, such as water, tea, or soup.\n\nFor mild symptoms, you can try some self-care measures:\n\n* Rest and take it easy\n* Use a humidifier to relieve congestion\n* Take over-the-counter pain relievers like acetaminophen (Tylenol) or ibuprofen (Advil) for headache relief\n* Gargle with salt water or use a neti pot to help clear your sinuses\n\nHowever, if you're experiencing any of the following, it's crucial to seek medical attention:\n\n* Fever above 102°F (39°C)\n* Severe headache or stiff neck\n* Difficulty breathing or rapid heartbeat\n* Chest pain or severe coughing\n* Confusion, disorientation, or extreme fatigue\n\nRemember, these symptoms can be indicative of a more serious underlying condition. It's always better to err on the side of caution and consult with a healthcare professional for proper evaluation and treatment.\n\nPlease don't hesitate to reach out to your primary care physician or an urgent care center if you're concerned about your symptoms. They'll be able to provide personalized guidance and help you feel better soon!\n\nRemember, my information is general and not a substitute for professional medical advice. Always consult with a healthcare provider for specific guidance on your symptoms.",
+      "timestamp": "2026-06-12T09:05:57.397457"
+    }
+  ],
+  "metadata": {}
+}

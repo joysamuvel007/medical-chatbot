@@ -1,0 +1,545 @@
+2026-06-11T20:10:19.424093+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-11T20:10:19.660772+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-11T20:10:19.660772+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-11T20:10:20.049741+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-11T20:10:20.331925+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-11T20:11:41.860985+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-11T20:11:42.412161+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-11T20:11:48.879452+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='hi'
+2026-06-11T20:11:48.885967+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: 33eb3166
+2026-06-11T20:11:48.885967+0530 | INFO | pipeline:run_pipeline | New session created: 33eb3166
+2026-06-11T20:11:48.900774+0530 | INFO | agents.classifier:classify | 🤖 Classifying with Ollama [llama3]...
+2026-06-11T20:12:23.225059+0530 | INFO | agents.classifier:classify | 📊 Classification: intent=greeting, emergency=0, confidence=1.00
+2026-06-11T20:12:23.228795+0530 | INFO | pipeline:run_pipeline | Classification: intent=greeting, emergency=0, confidence=1.00
+2026-06-11T20:12:23.249720+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=greeting, emergency=0
+2026-06-11T20:12:23.249720+0530 | INFO | agents.decision_engine:decide | 👋 Simple greeting route
+2026-06-11T20:12:23.249720+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-11T20:12:23.257298+0530 | INFO | agents.responder:generate | 💬 Generating response for intent=greeting
+2026-06-11T20:12:44.539894+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=33eb3166, safe=True
+2026-06-11T20:13:58.224140+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='i have a mild fever and headache . what are the treatments s'
+2026-06-11T20:13:58.295346+0530 | INFO | pipeline:run_pipeline | Existing session: 33eb3166
+2026-06-11T20:13:58.309519+0530 | INFO | agents.classifier:classify | 🤖 Classifying with Ollama [llama3]...
+2026-06-11T20:14:20.822221+0530 | INFO | agents.classifier:classify | 📊 Classification: intent=symptom_check, emergency=1, confidence=0.90
+2026-06-11T20:14:20.822221+0530 | INFO | pipeline:run_pipeline | Classification: intent=symptom_check, emergency=1, confidence=0.90
+2026-06-11T20:14:20.841303+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=symptom_check, emergency=1
+2026-06-11T20:14:20.842307+0530 | INFO | agents.decision_engine:decide | 🏥 Medical route: needs_search=True, needs_memory=False
+2026-06-11T20:14:20.842307+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-11T20:14:20.842307+0530 | INFO | pipeline:run_pipeline | 🔍 Performing web search...
+2026-06-11T20:14:20.844315+0530 | INFO | agents.web_search:search | 🔍 Web search: 'i have a mild fever and headache . what are the treatments should i take or tell me i can solve it from home'
+2026-06-11T20:14:21.741769+0530 | ERROR | agents.web_search:search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-11T20:14:21.741769+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-11T20:14:21.742920+0530 | INFO | agents.responder:generate | 💬 Generating response for intent=symptom_check
+2026-06-11T20:15:44.892989+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=33eb3166, safe=True
+2026-06-11T20:16:29.692592+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='i have severe chest pain'
+2026-06-11T20:16:29.745618+0530 | INFO | pipeline:run_pipeline | Existing session: 33eb3166
+2026-06-11T20:16:29.747761+0530 | WARNING | agents.preprocessor:process | 🚨 Emergency keywords detected: ['chest pain']
+2026-06-11T20:16:29.753604+0530 | WARNING | agents.classifier:classify | 🚨 Emergency fast-path triggered: ['chest pain']
+2026-06-11T20:16:29.753604+0530 | INFO | pipeline:run_pipeline | Classification: intent=emergency, emergency=4, confidence=1.00
+2026-06-11T20:16:29.782739+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=emergency, emergency=4
+2026-06-11T20:16:29.784258+0530 | WARNING | agents.decision_engine:decide | 🚨 CRITICAL emergency detected — emergency_stop route
+2026-06-11T20:16:29.784258+0530 | INFO | pipeline:run_pipeline | Decision: action=emergency_stop, skip_llm=True
+2026-06-11T20:16:55.475541+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='i am bleeding from nose'
+2026-06-11T20:16:55.507694+0530 | INFO | pipeline:run_pipeline | Existing session: 33eb3166
+2026-06-11T20:16:55.512049+0530 | INFO | agents.classifier:classify | 🤖 Classifying with Ollama [llama3]...
+2026-06-11T20:17:15.846227+0530 | INFO | agents.classifier:classify | 📊 Classification: intent=symptom_check, emergency=2, confidence=0.90
+2026-06-11T20:17:15.846227+0530 | INFO | pipeline:run_pipeline | Classification: intent=symptom_check, emergency=2, confidence=0.90
+2026-06-11T20:17:15.862137+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=symptom_check, emergency=2
+2026-06-11T20:17:15.864143+0530 | INFO | agents.decision_engine:decide | 🏥 Medical route: needs_search=True, needs_memory=False
+2026-06-11T20:17:15.864143+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-11T20:17:15.864783+0530 | INFO | pipeline:run_pipeline | 🔍 Performing web search...
+2026-06-11T20:17:15.865761+0530 | INFO | agents.web_search:search | 🔍 Web search: 'i am bleeding from nose'
+2026-06-11T20:17:16.553606+0530 | ERROR | agents.web_search:search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-11T20:17:16.553606+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-11T20:17:16.553606+0530 | INFO | agents.responder:generate | 💬 Generating response for intent=symptom_check
+2026-06-11T20:18:20.399951+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=33eb3166, safe=True
+2026-06-11T20:18:55.805909+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='what may be the reason for it'
+2026-06-11T20:18:55.883938+0530 | INFO | pipeline:run_pipeline | Existing session: 33eb3166
+2026-06-11T20:18:55.890204+0530 | INFO | agents.classifier:classify | 🤖 Classifying with Ollama [llama3]...
+2026-06-11T20:19:20.003279+0530 | INFO | agents.classifier:classify | 📊 Classification: intent=symptom_check, emergency=0, confidence=0.80
+2026-06-11T20:19:20.003279+0530 | INFO | pipeline:run_pipeline | Classification: intent=symptom_check, emergency=0, confidence=0.80
+2026-06-11T20:19:20.025933+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=symptom_check, emergency=0
+2026-06-11T20:19:20.028351+0530 | INFO | agents.decision_engine:decide | 🏥 Medical route: needs_search=True, needs_memory=False
+2026-06-11T20:19:20.028351+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-11T20:19:20.028351+0530 | INFO | pipeline:run_pipeline | 🔍 Performing web search...
+2026-06-11T20:19:20.028351+0530 | INFO | agents.web_search:search | 🔍 Web search: 'what may be the reason for it'
+2026-06-11T20:19:20.577817+0530 | ERROR | agents.web_search:search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-11T20:19:20.579030+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-11T20:19:20.579779+0530 | INFO | agents.responder:generate | 💬 Generating response for intent=symptom_check
+2026-06-11T20:19:31.030585+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-11T20:19:31.662384+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-11T20:20:21.491875+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=33eb3166, safe=True
+2026-06-11T20:21:20.701382+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='provide me the recent article facts about a medicine related'
+2026-06-11T20:21:20.701382+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: d9b7ee92
+2026-06-11T20:21:20.717350+0530 | INFO | pipeline:run_pipeline | New session created: d9b7ee92
+2026-06-11T20:21:20.795516+0530 | INFO | agents.classifier:classify | 🤖 Classifying with Ollama [llama3]...
+2026-06-11T20:21:49.887018+0530 | INFO | agents.classifier:classify | 📊 Classification: intent=general_medical, emergency=0, confidence=1.00
+2026-06-11T20:21:49.887018+0530 | INFO | pipeline:run_pipeline | Classification: intent=general_medical, emergency=0, confidence=1.00
+2026-06-11T20:21:49.908321+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=general_medical, emergency=0
+2026-06-11T20:21:49.908321+0530 | INFO | agents.decision_engine:decide | 🏥 Medical route: needs_search=True, needs_memory=False
+2026-06-11T20:21:49.908321+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-11T20:21:49.908321+0530 | INFO | pipeline:run_pipeline | 🔍 Performing web search...
+2026-06-11T20:21:49.908321+0530 | INFO | agents.web_search:search | 🔍 Web search: 'provide me the recent article facts about a medicine related and also provide me the sources that you are get ir from'
+2026-06-11T20:21:51.503714+0530 | ERROR | agents.web_search:search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-11T20:21:51.503714+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-11T20:21:51.511574+0530 | INFO | agents.responder:generate | 💬 Generating response for intent=general_medical
+2026-06-11T20:22:31.827362+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-11T20:22:32.431442+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-11T20:22:36.431375+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='provide me the recent article facts about a medicine related'
+2026-06-11T20:22:36.433353+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: 03fb9a86
+2026-06-11T20:22:36.434022+0530 | INFO | pipeline:run_pipeline | New session created: 03fb9a86
+2026-06-11T20:22:36.477397+0530 | INFO | agents.classifier:classify | 🤖 Classifying with Ollama [llama3]...
+2026-06-11T20:23:31.287533+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=d9b7ee92, safe=True
+2026-06-11T20:23:44.281567+0530 | INFO | agents.classifier:classify | 📊 Classification: intent=general_medical, emergency=0, confidence=1.00
+2026-06-11T20:23:44.282092+0530 | INFO | pipeline:run_pipeline | Classification: intent=general_medical, emergency=0, confidence=1.00
+2026-06-11T20:23:44.294296+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=general_medical, emergency=0
+2026-06-11T20:23:44.294296+0530 | INFO | agents.decision_engine:decide | 🏥 Medical route: needs_search=True, needs_memory=False
+2026-06-11T20:23:44.294296+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-11T20:23:44.294296+0530 | INFO | pipeline:run_pipeline | 🔍 Performing web search...
+2026-06-11T20:23:44.295895+0530 | INFO | agents.web_search:search | 🔍 Web search: 'provide me the recent article facts about a medicine related and also provide me the sources that you are get ir from",'
+2026-06-11T20:23:44.865148+0530 | ERROR | agents.web_search:search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-11T20:23:44.865148+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-11T20:23:44.867491+0530 | INFO | agents.responder:generate | 💬 Generating response for intent=general_medical
+2026-06-11T20:25:17.651674+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=03fb9a86, safe=True
+2026-06-11T21:34:25.921526+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-11T21:45:42.056759+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-11T21:45:42.188603+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-11T21:45:42.188603+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-11T21:45:42.590993+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-11T21:45:42.916310+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-11T21:46:00.035691+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-11T21:46:00.652773+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-11T21:46:18.798157+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='Can I take paracetamol with ibuprofen?'
+2026-06-11T21:46:18.816024+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: 9dd116eb
+2026-06-11T21:46:18.816024+0530 | INFO | pipeline:run_pipeline | New session created: 9dd116eb
+2026-06-11T21:46:18.855946+0530 | INFO | agents.classifier:classify | 🤖 Classifying with Ollama [llama3]...
+2026-06-11T21:46:56.991525+0530 | INFO | agents.classifier:classify | 📊 Classification: intent=medication_info, emergency=0, confidence=1.00
+2026-06-11T21:46:56.992570+0530 | INFO | pipeline:run_pipeline | Classification: intent=medication_info, emergency=0, confidence=1.00
+2026-06-11T21:46:57.020627+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=medication_info, emergency=0
+2026-06-11T21:46:57.020627+0530 | INFO | agents.decision_engine:decide | 🏥 Medical route: needs_search=True, needs_memory=False
+2026-06-11T21:46:57.020627+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-11T21:46:57.022560+0530 | INFO | pipeline:run_pipeline | 🔍 Performing web search...
+2026-06-11T21:46:57.022560+0530 | INFO | agents.web_search:search | 🔍 Web search: 'Can I take paracetamol with ibuprofen?'
+2026-06-11T21:46:57.479262+0530 | ERROR | agents.web_search:search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-11T21:46:57.479262+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-11T21:46:57.485191+0530 | INFO | agents.responder:generate | 💬 Generating response for intent=medication_info
+2026-06-11T21:48:12.563954+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=9dd116eb, safe=True
+2026-06-11T21:56:14.499699+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='Can drinking gasoline cure fever?
+
+Does eating magnets cure '
+2026-06-11T21:56:14.565160+0530 | INFO | pipeline:run_pipeline | Existing session: 9dd116eb
+2026-06-11T21:56:14.583780+0530 | INFO | agents.classifier:classify | 🤖 Classifying with Ollama [llama3]...
+2026-06-11T21:56:54.726417+0530 | INFO | agents.classifier:classify | 📊 Classification: intent=out_of_scope, emergency=0, confidence=1.00
+2026-06-11T21:56:54.726417+0530 | INFO | pipeline:run_pipeline | Classification: intent=out_of_scope, emergency=0, confidence=1.00
+2026-06-11T21:56:54.751917+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=out_of_scope, emergency=0
+2026-06-11T21:56:54.757689+0530 | INFO | agents.decision_engine:decide | 🚫 Out-of-scope query
+2026-06-11T21:56:54.757689+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-11T21:56:54.757689+0530 | INFO | agents.responder:generate | 💬 Generating response for intent=out_of_scope
+2026-06-11T21:57:16.778209+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-11T21:57:17.415435+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-11T21:57:24.816232+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='Can drinking gasoline cure fever?
+
+Does eating magnets cure '
+2026-06-11T21:57:24.840936+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: 73ea5682
+2026-06-11T21:57:24.840936+0530 | INFO | pipeline:run_pipeline | New session created: 73ea5682
+2026-06-11T21:57:24.874172+0530 | INFO | agents.classifier:classify | 🤖 Classifying with Ollama [llama3]...
+2026-06-11T21:58:14.769023+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=9dd116eb, safe=True
+2026-06-11T21:58:30.446389+0530 | INFO | agents.classifier:classify | 📊 Classification: intent=out_of_scope, emergency=0, confidence=1.00
+2026-06-11T21:58:30.446977+0530 | INFO | pipeline:run_pipeline | Classification: intent=out_of_scope, emergency=0, confidence=1.00
+2026-06-11T21:58:30.474379+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=out_of_scope, emergency=0
+2026-06-11T21:58:30.474379+0530 | INFO | agents.decision_engine:decide | 🚫 Out-of-scope query
+2026-06-11T21:58:30.474379+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-11T21:58:30.478399+0530 | INFO | agents.responder:generate | 💬 Generating response for intent=out_of_scope
+2026-06-11T21:59:48.042277+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=73ea5682, safe=True
+2026-06-11T22:04:40.382551+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='Can pregnant women eat papaya'
+2026-06-11T22:04:40.566084+0530 | INFO | pipeline:run_pipeline | Existing session: 73ea5682
+2026-06-11T22:04:40.601272+0530 | INFO | agents.classifier:classify | 🤖 Classifying with Ollama [llama3]...
+2026-06-11T22:05:08.706579+0530 | INFO | agents.classifier:classify | 📊 Classification: intent=general_medical, emergency=0, confidence=1.00
+2026-06-11T22:05:08.709619+0530 | INFO | pipeline:run_pipeline | Classification: intent=general_medical, emergency=0, confidence=1.00
+2026-06-11T22:05:08.745207+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=general_medical, emergency=0
+2026-06-11T22:05:08.747162+0530 | INFO | agents.decision_engine:decide | 🏥 Medical route: needs_search=True, needs_memory=False
+2026-06-11T22:05:08.747162+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-11T22:05:08.747162+0530 | INFO | pipeline:run_pipeline | 🔍 Performing web search...
+2026-06-11T22:05:08.750017+0530 | INFO | agents.web_search:search | 🔍 Web search: 'Can pregnant women eat papaya'
+2026-06-11T22:05:09.220636+0530 | ERROR | agents.web_search:search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-11T22:05:09.222960+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-11T22:05:09.230758+0530 | INFO | agents.responder:generate | 💬 Generating response for intent=general_medical
+2026-06-11T22:06:16.483180+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=73ea5682, safe=True
+2026-06-11T22:09:13.292678+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-12T09:02:21.204210+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-12T09:02:21.294660+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-12T09:02:21.294660+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-12T09:02:21.656202+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-12T09:02:21.934713+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-12T09:02:45.252926+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-12T09:02:45.793489+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-12T09:03:07.620844+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-12T09:03:08.150905+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-12T09:04:05.095491+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='i have cough,fever,headache what to do'
+2026-06-12T09:04:05.099965+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: 1d05fbe1
+2026-06-12T09:04:05.099965+0530 | INFO | pipeline:run_pipeline | New session created: 1d05fbe1
+2026-06-12T09:04:05.117889+0530 | INFO | agents.classifier:classify | 🤖 Classifying with Ollama [llama3]...
+2026-06-12T09:04:36.369500+0530 | INFO | agents.classifier:classify | 📊 Classification: intent=symptom_check, emergency=2, confidence=0.90
+2026-06-12T09:04:36.373387+0530 | INFO | pipeline:run_pipeline | Classification: intent=symptom_check, emergency=2, confidence=0.90
+2026-06-12T09:04:36.394124+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=symptom_check, emergency=2
+2026-06-12T09:04:36.394124+0530 | INFO | agents.decision_engine:decide | 🏥 Medical route: needs_search=True, needs_memory=False
+2026-06-12T09:04:36.394124+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-12T09:04:36.394124+0530 | INFO | pipeline:run_pipeline | 🔍 Performing web search...
+2026-06-12T09:04:36.394124+0530 | INFO | agents.web_search:search | 🔍 Web search: 'i have cough,fever,headache what to do'
+2026-06-12T09:04:36.733105+0530 | ERROR | agents.web_search:search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-12T09:04:36.737106+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-12T09:04:36.742404+0530 | INFO | agents.responder:generate | 💬 Generating response for intent=symptom_check
+2026-06-12T09:05:57.404745+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=1d05fbe1, safe=True
+2026-06-12T09:13:23.796375+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-12T09:42:51.201043+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-12T09:42:52.204615+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-12T09:42:52.204615+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-12T09:42:52.583614+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-12T09:42:52.853071+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-12T09:43:09.189732+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-12T09:43:09.739720+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-12T09:43:13.226271+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='hi'
+2026-06-12T09:43:13.229505+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: b3c25626
+2026-06-12T09:43:13.229505+0530 | INFO | pipeline:run_pipeline | New session created: b3c25626
+2026-06-12T09:43:13.243727+0530 | INFO | agents.classifier:classify | Classifying with LangChain + Ollama [llama3]...
+2026-06-12T09:43:41.074553+0530 | INFO | agents.classifier:classify | Classification: intent=greeting, emergency=0, confidence=1.00
+2026-06-12T09:43:41.074553+0530 | INFO | pipeline:run_pipeline | Classification: intent=greeting, emergency=0, confidence=1.00
+2026-06-12T09:43:41.104905+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=greeting, emergency=0
+2026-06-12T09:43:41.104905+0530 | INFO | agents.decision_engine:decide | 👋 Simple greeting route
+2026-06-12T09:43:41.104905+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-12T09:43:41.108080+0530 | INFO | agents.responder:generate | Generating response for intent=greeting
+2026-06-12T09:44:03.247698+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=b3c25626, safe=True
+2026-06-12T09:44:16.532446+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='i have chest pain'
+2026-06-12T09:44:16.561945+0530 | INFO | pipeline:run_pipeline | Existing session: b3c25626
+2026-06-12T09:44:16.566311+0530 | WARNING | agents.preprocessor:process | 🚨 Emergency keywords detected: ['chest pain']
+2026-06-12T09:44:17.552024+0530 | WARNING | agents.classifier:classify | Emergency fast-path triggered: ['chest pain']
+2026-06-12T09:44:17.552024+0530 | INFO | pipeline:run_pipeline | Classification: intent=emergency, emergency=4, confidence=1.00
+2026-06-12T09:44:17.581680+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=emergency, emergency=4
+2026-06-12T09:44:17.581680+0530 | WARNING | agents.decision_engine:decide | 🚨 CRITICAL emergency detected — emergency_stop route
+2026-06-12T09:44:17.581680+0530 | INFO | pipeline:run_pipeline | Decision: action=emergency_stop, skip_llm=True
+2026-06-12T09:46:04.639728+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='My child won't stop crying and has a fever.'
+2026-06-12T09:46:04.662286+0530 | INFO | pipeline:run_pipeline | Existing session: b3c25626
+2026-06-12T09:46:04.664301+0530 | INFO | agents.classifier:classify | Classifying with LangChain + Ollama [llama3]...
+2026-06-12T09:46:28.551870+0530 | INFO | agents.classifier:classify | Classification: intent=symptom_check, emergency=2, confidence=0.90
+2026-06-12T09:46:28.553272+0530 | INFO | pipeline:run_pipeline | Classification: intent=symptom_check, emergency=2, confidence=0.90
+2026-06-12T09:46:28.573950+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=symptom_check, emergency=2
+2026-06-12T09:46:28.574949+0530 | INFO | agents.decision_engine:decide | 🏥 Medical route: needs_search=True, needs_memory=False
+2026-06-12T09:46:28.587206+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-12T09:46:28.588207+0530 | INFO | pipeline:run_pipeline | 🔍 Performing web search...
+2026-06-12T09:46:28.598298+0530 | INFO | agents.web_search:search | 🔍 Web search: 'My child won't stop crying and has a fever.'
+2026-06-12T09:46:28.958441+0530 | ERROR | agents.web_search:search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-12T09:46:28.958441+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-12T09:46:28.965494+0530 | INFO | agents.responder:generate | Generating response for intent=symptom_check
+2026-06-12T09:46:50.874587+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=b3c25626, safe=True
+2026-06-12T09:48:14.214907+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='7 year old they have been crying for 5 hrs symptoms like sor'
+2026-06-12T09:48:14.279122+0530 | INFO | pipeline:run_pipeline | Existing session: b3c25626
+2026-06-12T09:48:14.296267+0530 | INFO | agents.classifier:classify | Classifying with LangChain + Ollama [llama3]...
+2026-06-12T09:48:33.147612+0530 | INFO | agents.classifier:classify | Classification: intent=symptom_check, emergency=2, confidence=0.90
+2026-06-12T09:48:33.147612+0530 | INFO | pipeline:run_pipeline | Classification: intent=symptom_check, emergency=2, confidence=0.90
+2026-06-12T09:48:33.168950+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=symptom_check, emergency=2
+2026-06-12T09:48:33.168950+0530 | INFO | agents.decision_engine:decide | 🏥 Medical route: needs_search=True, needs_memory=False
+2026-06-12T09:48:33.172215+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-12T09:48:33.172822+0530 | INFO | pipeline:run_pipeline | 🔍 Performing web search...
+2026-06-12T09:48:33.172822+0530 | INFO | agents.web_search:search | 🔍 Web search: '7 year old they have been crying for 5 hrs symptoms like sore'
+2026-06-12T09:48:33.478485+0530 | ERROR | agents.web_search:search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-12T09:48:33.478485+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-12T09:48:33.478485+0530 | INFO | agents.responder:generate | Generating response for intent=symptom_check
+2026-06-12T09:49:44.565359+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=b3c25626, safe=True
+2026-06-12T09:52:07.617806+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE START ═══ message='I have a headache and mild fever'
+2026-06-12T09:52:07.702103+0530 | INFO | pipeline:run_pipeline | Existing session: b3c25626
+2026-06-12T09:52:07.722177+0530 | INFO | agents.classifier:classify | Classifying with LangChain + Ollama [llama3]...
+2026-06-12T09:52:26.758383+0530 | INFO | agents.classifier:classify | Classification: intent=symptom_check, emergency=2, confidence=0.90
+2026-06-12T09:52:26.760387+0530 | INFO | pipeline:run_pipeline | Classification: intent=symptom_check, emergency=2, confidence=0.90
+2026-06-12T09:52:26.778934+0530 | INFO | agents.decision_engine:decide | 🔀 Decision Engine: intent=symptom_check, emergency=2
+2026-06-12T09:52:26.779980+0530 | INFO | agents.decision_engine:decide | 🏥 Medical route: needs_search=True, needs_memory=False
+2026-06-12T09:52:26.780489+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-12T09:52:26.786846+0530 | INFO | pipeline:run_pipeline | 🔍 Performing web search...
+2026-06-12T09:52:26.788845+0530 | INFO | agents.web_search:search | 🔍 Web search: 'I have a headache and mild fever'
+2026-06-12T09:52:27.111161+0530 | ERROR | agents.web_search:search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-12T09:52:27.112818+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-12T09:52:27.116120+0530 | INFO | agents.responder:generate | Generating response for intent=symptom_check
+2026-06-12T09:53:49.163126+0530 | INFO | pipeline:run_pipeline | ═══ PIPELINE END ═══ session=b3c25626, safe=True
+2026-06-12T09:58:03.020590+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-14T18:04:07.360827+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-14T18:04:09.047909+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-14T18:04:09.047909+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-14T18:04:09.504361+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-14T18:04:09.791750+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-14T18:04:28.875393+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-14T18:04:29.471575+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-14T18:06:02.898374+0530 | INFO | pipeline:run_pipeline | PIPELINE START: 'provide me the symptoms of the cancer and tell me from which'
+2026-06-14T18:06:02.902740+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: 32b5db02
+2026-06-14T18:06:02.934196+0530 | INFO | agents.classifier:classify | Classifying with LangChain + Ollama [llama3]...
+2026-06-14T18:06:51.334742+0530 | INFO | agents.classifier:classify | Classification: intent=general_medical, emergency=0, confidence=1.00
+2026-06-14T18:06:51.334742+0530 | INFO | pipeline:run_pipeline | Classification: intent=general_medical, emergency=0, confidence=1.00
+2026-06-14T18:06:51.359634+0530 | INFO | agents.decision_engine:decide | Decision Engine: intent=general_medical, level=0
+2026-06-14T18:06:51.359634+0530 | INFO | agents.decision_engine:decide | Medical route: search=True, memory=False
+2026-06-14T18:06:51.361742+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-14T18:06:51.361742+0530 | INFO | pipeline:run_pipeline | Running web search...
+2026-06-14T18:06:51.362897+0530 | INFO | agents.web_search:_run_search | Web search: 'provide me the symptoms of the cancer and tell me from which website did you take that info and tell me the exact detail contains in it'
+2026-06-14T18:06:51.832218+0530 | ERROR | agents.web_search:_run_search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-14T18:06:51.832218+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-14T18:06:51.834122+0530 | INFO | agents.responder:generate | Generating response for intent=general_medical
+2026-06-14T18:07:24.850812+0530 | INFO | pipeline:run_pipeline | PIPELINE END: session=32b5db02, safe=True
+2026-06-14T18:08:05.288111+0530 | INFO | pipeline:run_pipeline | PIPELINE START: 'why you cant provide it'
+2026-06-14T18:08:05.337563+0530 | INFO | agents.classifier:classify | Classifying with LangChain + Ollama [llama3]...
+2026-06-14T18:08:25.431220+0530 | INFO | agents.classifier:classify | Classification: intent=out_of_scope, emergency=0, confidence=1.00
+2026-06-14T18:08:25.431740+0530 | INFO | pipeline:run_pipeline | Classification: intent=out_of_scope, emergency=0, confidence=1.00
+2026-06-14T18:08:25.449225+0530 | INFO | agents.decision_engine:decide | Decision Engine: intent=out_of_scope, level=0
+2026-06-14T18:08:25.449225+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-14T18:08:25.451459+0530 | INFO | agents.responder:generate | Generating response for intent=out_of_scope
+2026-06-14T18:09:33.738923+0530 | INFO | pipeline:run_pipeline | PIPELINE END: session=32b5db02, safe=True
+2026-06-14T18:17:11.594003+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-14T18:17:14.703657+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-14T18:17:16.546036+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-14T18:17:16.546036+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-14T18:17:16.852146+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-14T18:17:17.144000+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-14T18:17:18.029865+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-14T18:17:30.009191+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-14T18:17:31.340738+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-14T18:17:31.340738+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-14T18:17:31.637934+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-14T18:17:31.916104+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-14T18:18:09.144965+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-14T18:18:09.690569+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-14T18:18:23.311905+0530 | INFO | pipeline:run_pipeline | PIPELINE START: 'explain the symptoms of cancer'
+2026-06-14T18:18:23.313936+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: 382bad83
+2026-06-14T18:18:23.360869+0530 | INFO | agents.classifier:classify | Classifying with LangChain + Ollama [llama3]...
+2026-06-14T18:19:13.634714+0530 | INFO | agents.classifier:classify | Classification: intent=general_medical, emergency=0, confidence=1.00
+2026-06-14T18:19:13.640087+0530 | INFO | pipeline:run_pipeline | Classification: intent=general_medical, emergency=0, confidence=1.00
+2026-06-14T18:19:13.671998+0530 | INFO | agents.decision_engine:decide | Decision Engine: intent=general_medical, level=0
+2026-06-14T18:19:13.671998+0530 | INFO | agents.decision_engine:decide | Medical route: search=True, memory=False
+2026-06-14T18:19:13.671998+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-14T18:19:13.671998+0530 | INFO | pipeline:run_pipeline | Running web search...
+2026-06-14T18:19:13.674007+0530 | INFO | agents.web_search:_run_search | Web search: 'explain the symptoms of cancer'
+2026-06-14T18:19:14.132087+0530 | ERROR | agents.web_search:_run_search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-14T18:19:14.132874+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-14T18:19:14.132874+0530 | INFO | agents.responder:generate | Generating response for intent=general_medical
+2026-06-14T18:22:15.138945+0530 | INFO | pipeline:run_pipeline | PIPELINE END: session=382bad83, safe=True
+2026-06-14T18:22:51.545515+0530 | INFO | pipeline:run_pipeline | PIPELINE START: 'from where did you find this'
+2026-06-14T18:22:51.648700+0530 | INFO | agents.classifier:classify | Classifying with LangChain + Ollama [llama3]...
+2026-06-14T18:23:15.847211+0530 | INFO | agents.classifier:classify | Classification: intent=out_of_scope, emergency=0, confidence=1.00
+2026-06-14T18:23:15.847211+0530 | INFO | pipeline:run_pipeline | Classification: intent=out_of_scope, emergency=0, confidence=1.00
+2026-06-14T18:23:15.869690+0530 | INFO | agents.decision_engine:decide | Decision Engine: intent=out_of_scope, level=0
+2026-06-14T18:23:15.869690+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-14T18:23:15.874356+0530 | INFO | agents.responder:generate | Generating response for intent=out_of_scope
+2026-06-14T18:24:35.076479+0530 | INFO | pipeline:run_pipeline | PIPELINE END: session=382bad83, safe=True
+2026-06-14T18:25:42.225927+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-14T18:42:50.920459+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-14T18:42:53.435927+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-14T18:42:53.435927+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-14T18:42:53.843071+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-14T18:42:54.145790+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-14T18:43:07.871573+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-14T18:43:08.518744+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-14T18:43:59.049248+0530 | INFO | pipeline:run_pipeline | PIPELINE START: 'tell me symptoms of cancer and tell me from where did you ge'
+2026-06-14T18:43:59.055972+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: 576dfd1f
+2026-06-14T18:43:59.101517+0530 | INFO | agents.classifier:classify | Classifying with LangChain [llama3]...
+2026-06-14T18:44:42.214627+0530 | INFO | agents.classifier:classify | Classification → intent=general_medical, emergency=0, confidence=1.00
+2026-06-14T18:44:42.230679+0530 | INFO | pipeline:run_pipeline | Classification: intent=general_medical, emergency=0, confidence=1.00
+2026-06-14T18:44:42.290845+0530 | INFO | agents.decision_engine:decide | Decision Engine: intent=general_medical, level=0
+2026-06-14T18:44:42.290845+0530 | INFO | agents.decision_engine:decide | Medical route: search=True, memory=False
+2026-06-14T18:44:42.290845+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-14T18:44:42.292697+0530 | INFO | pipeline:run_pipeline | Running web search...
+2026-06-14T18:44:42.292697+0530 | INFO | agents.web_search:_run_search | Web search: 'tell me symptoms of cancer and tell me from where did you get the info from'
+2026-06-14T18:44:42.753470+0530 | ERROR | agents.web_search:_run_search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-14T18:44:42.755017+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-14T18:44:42.757210+0530 | INFO | agents.responder:generate | Generating response for intent=general_medical
+2026-06-14T18:47:23.953736+0530 | INFO | pipeline:run_pipeline | PIPELINE END: session=576dfd1f, safe=True
+2026-06-14T18:47:53.436285+0530 | INFO | memory.session_manager:clear_session | 🗑️  Deleted session: 576dfd1f
+2026-06-14T18:48:57.435208+0530 | INFO | pipeline:run_pipeline | PIPELINE START: 'what type of data did you store after answering me'
+2026-06-14T18:48:57.473193+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: 29c9ba12
+2026-06-14T18:48:57.657384+0530 | INFO | agents.classifier:classify | Classifying with LangChain [llama3]...
+2026-06-14T18:49:24.124262+0530 | INFO | agents.classifier:classify | Classification → intent=greeting, emergency=0, confidence=1.00
+2026-06-14T18:49:24.124262+0530 | INFO | pipeline:run_pipeline | Classification: intent=greeting, emergency=0, confidence=1.00
+2026-06-14T18:49:24.162061+0530 | INFO | agents.decision_engine:decide | Decision Engine: intent=greeting, level=0
+2026-06-14T18:49:24.162061+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-14T18:49:24.171917+0530 | INFO | agents.responder:generate | Generating response for intent=greeting
+2026-06-14T18:50:05.982322+0530 | INFO | pipeline:run_pipeline | PIPELINE END: session=29c9ba12, safe=True
+2026-06-14T18:51:52.981619+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T09:28:17.279173+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T09:28:18.940004+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T09:28:18.940004+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T09:28:19.303865+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T09:28:19.605203+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T09:28:47.402311+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T09:28:47.949228+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T09:30:38.604862+0530 | INFO | pipeline:run_pipeline | PIPELINE START: 'i have leg pain what can i do'
+2026-06-15T09:30:38.604862+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: 7f4e992c
+2026-06-15T09:30:38.628848+0530 | INFO | agents.classifier:classify | Classifying with LangChain [llama3]...
+2026-06-15T09:31:14.012017+0530 | INFO | agents.classifier:classify | Classification → intent=symptom_check, emergency=1, confidence=0.80
+2026-06-15T09:31:14.012802+0530 | INFO | pipeline:run_pipeline | Classification: intent=symptom_check, emergency=1, confidence=0.80
+2026-06-15T09:31:14.033672+0530 | INFO | agents.decision_engine:decide | Decision Engine: intent=symptom_check, level=1
+2026-06-15T09:31:14.035680+0530 | INFO | agents.decision_engine:decide | Medical route: search=True, memory=False
+2026-06-15T09:31:14.035680+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-15T09:31:14.035680+0530 | INFO | pipeline:run_pipeline | Running web search...
+2026-06-15T09:31:14.037211+0530 | INFO | agents.web_search:_run_search | Web search: 'i have leg pain what can i do'
+2026-06-15T09:31:15.484705+0530 | ERROR | agents.web_search:_run_search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-15T09:31:15.490037+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-15T09:31:15.490037+0530 | INFO | agents.responder:generate | Generating response for intent=symptom_check
+2026-06-15T09:32:38.674426+0530 | INFO | pipeline:run_pipeline | PIPELINE END: session=7f4e992c, safe=True
+2026-06-15T09:42:09.912023+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T09:42:12.876813+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T09:42:14.615628+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T09:42:14.615628+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T09:42:14.922600+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T09:42:15.212181+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T09:42:19.222175+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:03:39.979847+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:07:38.995400+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:08:18.189136+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:08:34.812200+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:08:42.515465+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:08:45.572710+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:08:46.543129+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:08:46.543129+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:08:46.882747+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:08:47.158417+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:09:16.145037+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:09:17.243987+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:09:18.153488+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:09:18.153488+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:09:18.442877+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:09:18.716478+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:09:19.995596+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:09:20.886027+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:09:20.886027+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:09:21.164138+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:09:21.430336+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:09:41.166802+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:09:41.719465+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:09:43.497221+0530 | INFO | pipeline:run_pipeline | PIPELINE START: 'hi'
+2026-06-15T11:09:43.500212+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: daa1e8f6
+2026-06-15T11:09:43.514661+0530 | INFO | agents.classifier:classify | Classifying with LangChain [llama3]...
+2026-06-15T11:10:08.267697+0530 | INFO | agents.classifier:classify | Classification → intent=greeting, emergency=0, confidence=1.00
+2026-06-15T11:10:08.269003+0530 | INFO | pipeline:run_pipeline | Classification: intent=greeting, emergency=0, confidence=1.00
+2026-06-15T11:10:08.286282+0530 | INFO | agents.decision_engine:decide | Decision Engine: intent=greeting, level=0
+2026-06-15T11:10:08.287449+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-15T11:10:08.289953+0530 | INFO | agents.responder:generate | Generating response for intent=greeting
+2026-06-15T11:10:37.391053+0530 | INFO | pipeline:run_pipeline | PIPELINE END: session=daa1e8f6, safe=True
+2026-06-15T11:10:48.800108+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:16:09.373251+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:16:10.487920+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:16:10.487920+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:16:10.791838+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:16:11.066038+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:16:13.697041+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:17:29.745433+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:17:30.542544+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:17:30.542544+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:17:30.819401+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:17:31.109230+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:17:33.850402+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:20:37.209855+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:20:38.012743+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:20:38.012743+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:20:38.289526+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:20:38.560082+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:20:41.869266+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:23:14.513435+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:23:31.872170+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:23:44.263809+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:23:47.987971+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:23:48.854725+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:23:48.854725+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:23:49.128862+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:23:49.403398+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:24:07.509486+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:25:10.377989+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:25:11.296615+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:25:11.296615+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:25:11.572185+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:25:11.844471+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:25:14.359492+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:26:50.834024+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:27:03.520712+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:27:04.442279+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:27:04.442279+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:27:04.724772+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:27:05.001221+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:27:15.291831+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:28:37.857520+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:28:57.354744+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:28:58.264026+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:28:58.265065+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:28:58.563204+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:28:58.845093+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:29:04.043067+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:31:56.328060+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:31:57.117378+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:31:57.117378+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:31:57.411101+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:31:57.684391+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:32:02.258491+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:35:02.687498+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:35:03.478186+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:35:03.478186+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:35:03.764257+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:35:04.042345+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:35:32.227541+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:39:11.206344+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:39:11.988665+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:39:11.988665+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:39:12.268390+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:39:12.550206+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:39:13.865899+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:42:53.661720+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:42:54.740731+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:42:54.740731+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:42:55.045970+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:42:55.329982+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:42:57.092405+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:47:04.609766+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:47:05.698286+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:47:05.698804+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:47:05.994675+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:47:06.272164+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:47:17.598317+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T11:49:10.140428+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T11:49:11.216115+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T11:49:11.217375+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T11:49:11.501505+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T11:49:11.776224+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T11:49:12.767280+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T20:11:37.219286+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T20:11:38.755056+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T20:11:38.755056+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T20:11:39.128391+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T20:11:39.418259+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T20:12:39.154337+0530 | INFO | main:lifespan | 👋 Shutting down...
+2026-06-15T20:27:20.883625+0530 | INFO | memory.session_manager:__init__ | 📁 SessionManager initialized. Storage: C:\Users\joysa\healthcare-chatbot\backend\sessions
+2026-06-15T20:27:22.854222+0530 | INFO | main:lifespan | 🚀 Starting Healthcare Chatbot v1.0.0
+2026-06-15T20:27:22.855233+0530 | INFO | main:lifespan | Checking Ollama connection...
+2026-06-15T20:27:23.284821+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T20:27:23.567849+0530 | INFO | main:lifespan | ✅ Ready. Models available: ['llama3:latest']
+2026-06-15T20:28:04.841562+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T20:28:05.470638+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T20:28:49.156026+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T20:28:49.746363+0530 | INFO | utils.ollama_client:check_ollama_running | ✅ Ollama is running. Available models: ['llama3:latest']
+2026-06-15T20:30:33.742721+0530 | INFO | pipeline:run_pipeline | PIPELINE START: 'i have fever how can i cure it'
+2026-06-15T20:30:33.747854+0530 | INFO | memory.session_manager:create_session | 🆕 Created new session: b02a8399
+2026-06-15T20:30:33.814978+0530 | INFO | agents.classifier:classify | Classifying with LangChain [llama3]...
+2026-06-15T20:31:26.515887+0530 | INFO | agents.classifier:classify | Classification → intent=symptom_check, emergency=1, confidence=0.90
+2026-06-15T20:31:26.525450+0530 | INFO | pipeline:run_pipeline | Classification: intent=symptom_check, emergency=1, confidence=0.90
+2026-06-15T20:31:26.579362+0530 | INFO | agents.decision_engine:decide | Decision Engine: intent=symptom_check, level=1
+2026-06-15T20:31:26.580360+0530 | INFO | agents.decision_engine:decide | Medical route: search=True, memory=False
+2026-06-15T20:31:26.580360+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-15T20:31:26.580360+0530 | INFO | pipeline:run_pipeline | Running web search...
+2026-06-15T20:31:26.581875+0530 | INFO | agents.web_search:_run_search | Web search: 'i have fever how can i cure it'
+2026-06-15T20:31:27.346180+0530 | ERROR | agents.web_search:_run_search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-15T20:31:27.346180+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-15T20:31:27.349712+0530 | INFO | agents.responder:generate | Generating response for intent=symptom_check
+2026-06-15T20:33:32.468973+0530 | INFO | pipeline:run_pipeline | PIPELINE END: session=b02a8399, safe=True
+2026-06-15T20:35:09.611870+0530 | INFO | pipeline:run_pipeline | PIPELINE START: 'can i take ibuprofen with blood thinners'
+2026-06-15T20:35:09.893601+0530 | INFO | agents.classifier:classify | Classifying with LangChain [llama3]...
+2026-06-15T20:35:50.377635+0530 | INFO | agents.classifier:classify | Classification → intent=medication_info, emergency=0, confidence=1.00
+2026-06-15T20:35:50.381140+0530 | INFO | pipeline:run_pipeline | Classification: intent=medication_info, emergency=0, confidence=1.00
+2026-06-15T20:35:50.411006+0530 | INFO | agents.decision_engine:decide | Decision Engine: intent=medication_info, level=0
+2026-06-15T20:35:50.412570+0530 | INFO | agents.decision_engine:decide | Medical route: search=True, memory=False
+2026-06-15T20:35:50.412570+0530 | INFO | pipeline:run_pipeline | Decision: action=respond, skip_llm=False
+2026-06-15T20:35:50.413697+0530 | INFO | pipeline:run_pipeline | Running web search...
+2026-06-15T20:35:50.414697+0530 | INFO | agents.web_search:_run_search | Web search: 'can i take ibuprofen with blood thinners'
+2026-06-15T20:35:52.317187+0530 | ERROR | agents.web_search:_run_search | DuckDuckGo search failed: unsupported format string passed to datetime.timedelta.__format__
+2026-06-15T20:35:52.319188+0530 | INFO | pipeline:run_pipeline | Found 0 search results
+2026-06-15T20:35:52.325365+0530 | INFO | agents.responder:generate | Generating response for intent=medication_info
+2026-06-15T20:37:50.730684+0530 | INFO | pipeline:run_pipeline | PIPELINE END: session=b02a8399, safe=True

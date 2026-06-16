@@ -1,0 +1,18 @@
+{
+  "session_id": "daa1e8f6",
+  "created_at": "2026-06-15T11:09:43.497221",
+  "last_active": "2026-06-15T11:10:37.389300",
+  "messages": [
+    {
+      "role": "user",
+      "content": "hi",
+      "timestamp": "2026-06-15T11:09:43.514661"
+    },
+    {
+      "role": "assistant",
+      "content": "Hi! I'm a healthcare assistant, here to help you with any health-related concerns or questions you might have. How can I assist you today? Please feel free to share what's on your mind, and I'll do my best to provide helpful guidance and support.",
+      "timestamp": "2026-06-15T11:10:37.389300"
+    }
+  ],
+  "metadata": {}
+}

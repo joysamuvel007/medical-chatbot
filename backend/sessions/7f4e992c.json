@@ -1,0 +1,18 @@
+{
+  "session_id": "7f4e992c",
+  "created_at": "2026-06-15T09:30:38.604862",
+  "last_active": "2026-06-15T09:32:38.673380",
+  "messages": [
+    {
+      "role": "user",
+      "content": "i have leg pain what can i do",
+      "timestamp": "2026-06-15T09:30:38.627592"
+    },
+    {
+      "role": "assistant",
+      "content": "I'm happy to help you with your concern! Before we dive into possible causes and self-care advice, I just need a bit more information from you.\n\nCan you please tell me:\n\n1. How long have you been experiencing this leg pain?\n2. Is the pain mild, moderate, or severe?\n3. Where exactly is the pain located in your leg? (e.g., calf, thigh, knee, ankle)\n4. Does the pain change with movement or activity? For example, does it get worse when you walk or stand?\n5. Have you noticed any other symptoms accompanying this leg pain, such as numbness, tingling, swelling, or redness?\n\nPlease share these details, and I'll do my best to provide some possible causes and self-care advice for your leg pain.\n\n(Note: If you're experiencing severe or sudden-onset leg pain, please seek medical attention immediately. This conversation is intended for general guidance only.)",
+      "timestamp": "2026-06-15T09:32:38.673380"
+    }
+  ],
+  "metadata": {}
+}
